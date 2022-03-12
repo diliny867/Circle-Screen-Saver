@@ -82,6 +82,8 @@ void Circles::Move() {
                     circles[j]->Normalise();
                     circles[i]->IncCx(circles[i]->GetDx() * v);//set new position
                     circles[i]->IncCy(circles[i]->GetDy() * v);//set new position
+                    circles[j]->IncCx(circles[j]->GetDx() * v);//set new position
+                    circles[j]->IncCy(circles[j]->GetDy() * v);//set new position
                 }
             }
         }
