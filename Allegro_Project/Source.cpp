@@ -26,7 +26,7 @@ class AllegroApp :public AllegroBase {
     virtual void Run() {
         ALLEGRO_EVENT ev;
         al_start_timer(alTimer_);
-        circles.CreateCircles(10);
+        circles.CreateCircles(20);
         bool redraw = false;
         while (true) {
             al_clear_to_color(al_map_rgb(0, 0, 0));

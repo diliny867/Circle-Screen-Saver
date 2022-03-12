@@ -34,6 +34,7 @@ bool Circle::Touch(double cx2, double cy2, double r2) {
 void Circle::Random(double cxmin, double cxmax, double cymin, double cymax, double rmin, double rmax, double dmin, double dmax, double vmin, double vmax)
 {//to not get outside the screen ,cxmin and cymin should be >=rmax, and cxmax and cymax should be <=(SCREEN_W or SCREEN_H)-rmax
     r  = rmin + rand() % (long)(rmax - rmin)+ (double)rand() * 2 / (RAND_MAX - 1);
+    //r = 30;
     cx = cxmin + rand() % (long)(cxmax - cxmin) + (double)rand() * 2 / (RAND_MAX - 1);
     cy = cymin + rand() % (long)(cymax - cymin) + (double)rand() * 2 / (RAND_MAX - 1);
     v = vmin + rand() % (long)(vmax-vmin)+(double)rand() / (RAND_MAX - 1);
@@ -45,8 +46,8 @@ void Circle::Normalise() {
     double l = sqrt(dx * dx + dy * dy);
     dx *= (1 / l);
     dy *= (1 / l);
-    std::cout << "dx: " << dx << "\n";
-    std::cout << "dy: " << dy << "\n";
+    //std::cout << "dx: " << dx << "\n";
+    //std::cout << "dy: " << dy << "\n";
 }
 double Circle::GetR() {
     return r;

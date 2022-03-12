@@ -73,17 +73,17 @@ void Circles::Move() {
                     v1 = circles[i]->GetV();
                     v2 = circles[j]->GetV();
                     tmp = circles[i]->GetDx()*v1;
-                    circles[i]->SetDx(circles[j]->GetDx()*v2 - tmp);
+                    circles[i]->SetDx(circles[j]->GetDx()*v2 + tmp);
                     circles[j]->SetDx(tmp - circles[j]->GetDx()*v2);
                     tmp = circles[i]->GetDy()*v1;
-                    circles[i]->SetDy(circles[j]->GetDy()*v2 - tmp);
+                    circles[i]->SetDy(circles[j]->GetDy()*v2 + tmp);
                     circles[j]->SetDy(tmp - circles[j]->GetDy()*v2);
                     circles[i]->Normalise();
                     circles[j]->Normalise();
-                    circles[i]->IncCx(circles[i]->GetDx() * v);//set new position
-                    circles[i]->IncCy(circles[i]->GetDy() * v);//set new position
-                    circles[j]->IncCx(circles[j]->GetDx() * v);//set new position
-                    circles[j]->IncCy(circles[j]->GetDy() * v);//set new position
+                    circles[i]->IncCx(circles[i]->GetDx() * v1);//set new position
+                    circles[i]->IncCy(circles[i]->GetDy() * v1);//set new position
+                    circles[j]->IncCx(circles[j]->GetDx() * v2);//set new position
+                    circles[j]->IncCy(circles[j]->GetDy() * v2);//set new position
                 }
             }
         }
@@ -93,7 +93,7 @@ void Circles::Move() {
 void Circles::Draw(){
     //ALLEGRO_FONT* font = al_load_ttf_font("Jaapokkienchance-Regular.otf", 10, NULL);
     for (int i = 0; i < circles.size(); i++) {
-        circles[i]->color = al_map_rgb(rand() % 256, rand() % 256, rand() % 256);
+        //circles[i]->color = al_map_rgb(rand() % 256, rand() % 256, rand() % 256);
         al_draw_filled_circle(circles[i]->GetCx(),circles[i]->GetCy(),circles[i]->GetR(),circles[i]->color);
         //al_draw_multiline_textf(font, al_map_rgb(0, 255, 0), circles[i]->GetCx(), circles[i]->GetCy(), SCREEN_W, SCREEN_H, 1, "Cx: %f Cy: %f R: %f", circles[i]->GetCx(), circles[i]->GetCy(), circles[i]->GetR());
         //al_draw_multiline_textf(font, al_map_rgb(0, 255, 0), circles[i]->GetCx(), circles[i]->GetCy()-10, SCREEN_W, SCREEN_H, 1, "Dx: %f Dy: %f", circles[i]->GetDx(), circles[i]->GetDy());
