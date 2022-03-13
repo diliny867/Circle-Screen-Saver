@@ -6,12 +6,12 @@ void Circles::CreateCircles(int n){
     srand(time(0));
     for (int i = 0; i < n; i++) {
         circles.push_back(new Circle);
-        circles[i]->Random(50, SCREEN_W-50, 50, SCREEN_H - 50,20,40,-3,3, 1, 3);
+        circles[i]->Random(50, SCREEN_W-50, 50, SCREEN_H - 50,1,3,-3,3, 1, 3);
         if (i > 0) {
             for (int j = 0; j < i; j++) {
                 if (i != j) {
                     if (circles[i]->Overlap(*circles[j])) {
-                        circles[i]->Random(50, SCREEN_W - 50, 50, SCREEN_H - 50, 20, 40, -3, 3,1,2);
+                        circles[i]->Random(50, SCREEN_W - 50, 50, SCREEN_H - 50, 1, 3, -3, 3,1,2);
                         j = -1;
                     }
                 }
@@ -63,13 +63,13 @@ void Circles::Move() {
             if (i != j) {
                 if (circles[i]->Overlap(*circles[j])) {
                     /*
-                    tmp = circles[j]->GetDx();
-                    circles[j]->SetDx(circles[i]->GetDx());
-                    circles[i]->SetDx(tmp);
-                    tmp = circles[j]->GetDy();
-                    circles[j]->SetDy(circles[i]->GetDy());
-                    circles[i]->SetDy(tmp);
-                    */
+                    //tmp = circles[j]->GetDx();
+                    //circles[j]->SetDx(circles[i]->GetDx());
+                    //circles[i]->SetDx(tmp);
+                    //tmp = circles[j]->GetDy();
+                    //circles[j]->SetDy(circles[i]->GetDy());
+                    //circles[i]->SetDy(tmp);
+
                     v1 = circles[i]->GetV();
                     v2 = circles[j]->GetV();
                     tmp = circles[i]->GetDx()*v1;
@@ -80,6 +80,20 @@ void Circles::Move() {
                     circles[j]->SetDy(tmp - circles[j]->GetDy()*v2);
                     circles[i]->Normalise();
                     circles[j]->Normalise();
+                    */
+                    double d = std::sqrt((circles[i]->GetCx() - circles[j]->GetCx())*(circles[i]->GetCx() - circles[j]->GetCx()) + (circles[i]->GetCy() - circles[j]->GetCy())*(circles[i]->GetCy() - circles[j]->GetCy()));
+                    double nx = (circles[j]->GetCx() - circles[i]->GetCx()) / d;
+                    double ny = (circles[j]->GetCy() - circles[i]->GetCy()) / d;
+                    double p = 2 * (circles[i]->GetDx() * nx + circles[i]->GetDy() * ny - circles[j]->GetDx() * nx - circles[j]->GetDy() * ny) / (circles[i]->GetM() + circles[j]->GetM());
+                    circles[i]->SetDx(circles[i]->GetDx() - p * circles[i]->GetM() * nx);
+                    circles[i]->SetDy(circles[i]->GetDy() - p * circles[i]->GetM() * ny);
+                    circles[j]->SetDx(circles[j]->GetDx() + p * circles[j]->GetM() * nx);
+                    circles[j]->SetDy(circles[j]->GetDy() + p * circles[j]->GetM() * ny);
+                    circles[i]->Normalise();
+                    circles[j]->Normalise();
+
+                    v1 = circles[i]->GetV();
+                    v2 = circles[j]->GetV();
                     circles[i]->IncCx(circles[i]->GetDx() * v1);//set new position
                     circles[i]->IncCy(circles[i]->GetDy() * v1);//set new position
                     circles[j]->IncCx(circles[j]->GetDx() * v2);//set new position
@@ -87,6 +101,7 @@ void Circles::Move() {
                 }
             }
         }
+        
     }
 }
 
