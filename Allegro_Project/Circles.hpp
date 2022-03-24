@@ -1,5 +1,6 @@
+#pragma once
 #include "Circle.hpp"
-#include <windows.h>
+#include <Windows.h>
 #include "AllegroBase.hpp"
 #include <vector>
 #include <ctime>
