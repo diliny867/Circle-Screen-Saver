@@ -131,7 +131,7 @@ void Circles::Move() {
     for (int i = 0; i < circles.size(); i++) {
 
         v = circles[i]->GetV();
-        for (double vi = 0.0; vi <= v; vi += step){
+        for (double vi = 0.0; vi <= v; vi += step){     //dont think this is the right way to do it
             circles[i]->IncCx(circles[i]->GetDx() * step);//set new position
             circles[i]->IncCy(circles[i]->GetDy() * step);//set new position
             tmpdx = circles[i]->GetDx();
@@ -153,7 +153,7 @@ void Circles::Move() {
                         circles[j]->Normalise();
 
                         circles[i]->IncCx(-tmpdx * step*2);//set new position
-                        circles[i]->IncCy(-tmpdy * step*2);
+                        circles[i]->IncCy(-tmpdy * step*2);//its... its... not good... i think
                     }
                 }
             }
