@@ -217,6 +217,7 @@ void Circles::Move() {
         }
         */
 
+        /*
         for (int j = 0; j < circles.size(); j++) {
             if (i != j) {
                 if (circles[i]->Overlap(*circles[j])) {
@@ -238,7 +239,7 @@ void Circles::Move() {
                     circles[j]->SetDy(tmp - circles[j]->GetDy()*v2);
                     circles[i]->Normalise();
                     circles[j]->Normalise();
-                    */
+                    
 
 
                     d = std::sqrt((circles[i]->GetCx() - circles[j]->GetCx())*(circles[i]->GetCx() - circles[j]->GetCx()) + (circles[i]->GetCy() - circles[j]->GetCy())*(circles[i]->GetCy() - circles[j]->GetCy()));
@@ -262,7 +263,7 @@ void Circles::Move() {
                     circles[i]->SetCy((midy + circles[i]->GetR() * (circles[i]->GetCy() - circles[j]->GetCy()) / d));   //no
                     circles[j]->SetCx((midx + circles[j]->GetR() * (circles[j]->GetCx() - circles[i]->GetCx()) / d));   //no
                     circles[j]->SetCy((midy + circles[i]->GetR() * (circles[j]->GetCy() - circles[i]->GetCy()) / d));   //no
-                    */
+                    
 
                     /*
                     v1 = circles[i]->GetV();
@@ -271,10 +272,11 @@ void Circles::Move() {
                     circles[i]->IncCy(circles[i]->GetDy() * v1);//set new position
                     circles[j]->IncCx(circles[j]->GetDx() * v2);//set new position
                     circles[j]->IncCy(circles[j]->GetDy() * v2);//set new position
-                    */
+                    
                 }
             }
         }
+		*/
     }
 
 }
